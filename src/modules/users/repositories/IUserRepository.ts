@@ -8,5 +8,5 @@ export interface ICreateUserDTO
 
 export default interface IUserRepository
 {
-    createUser: ( userDetails: ICreateUserDTO ) => void;
+    createUser: ( userDetails: ICreateUserDTO ) => Promise<void>;
 }

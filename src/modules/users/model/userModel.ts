@@ -1,8 +1,8 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../../../config/db";
 
 
-export default db.define( "user", {
+const User = db.define( "user", {
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
@@ -18,4 +18,14 @@ export default db.define( "user", {
         allowNull: false,
         unique: true,
     },
+    picture: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 } );
+
+export default User;

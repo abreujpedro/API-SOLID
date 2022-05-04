@@ -1,22 +1,12 @@
+import User from "../../model/userModel";
 import IUserRepository, { ICreateUserDTO } from "../IUserRepository";
 
 export default class UserRepository implements IUserRepository
 {
 
-    private constructor () { }
-    private static INSTANCE: UserRepository;
-    createUser ( userDetails: ICreateUserDTO )
+    async createUser ( { name, password, email, picture }: ICreateUserDTO )
     {
-        console.log( userDetails );
+        await User.create( { name, password, email, picture } );
     };
 
-
-    public static getInstance (): UserRepository
-    {
-        if ( !UserRepository.INSTANCE )
-        {
-            UserRepository.INSTANCE = new UserRepository();
-        }
-        return UserRepository.INSTANCE;
-    }
 }
