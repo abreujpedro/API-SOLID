@@ -6,5 +6,24 @@ services:
     command: npm run dev
     ports:
       - "3000:3000"
+    network_mode: host
     volumes:
       - .:/app
+    depends_on:
+      - node-db
+  mysql-db:
+    container_name: "node-db"
+    restart: always
+    image: mysql:8.0
+    ports:
+      - "5000:5000"
+    network_mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=Flights
+    volumes:
+      - pgdata:/app/data
+
+volumes:
+  pgdata:
