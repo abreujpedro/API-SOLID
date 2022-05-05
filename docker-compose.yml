@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
@@ -6,18 +6,16 @@ services:
     command: npm run dev
     ports:
       - "3000:3000"
-    network_mode: host
     volumes:
       - .:/app
     depends_on:
-      - node-db
-  mysql-db:
-    container_name: "node-db"
+      - db
+  db:
+    container_name: "node_db"
     restart: always
     image: mysql:8.0
     ports:
       - "3306:3306"
-    network_mode: host
     environment:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=123

@@ -6,14 +6,15 @@ import createUserController from "./modules/users/useCases/createUser";
 
 const app = express();
 
-app.use( express.json() );
-// app.use( router );
+app.use(express.json());
+app.use(router);
 
 const port = process.env.PORT || 3000;
 
 db.sync();
 
-app.post( "/user", createUserController.handle );
+app.post("/user", createUserController.handle);
 
-app.listen( port, () => { console.log( "server on port ", port ); } );
-
+app.listen(port, () => {
+  console.log("server on port ", port);
+});
