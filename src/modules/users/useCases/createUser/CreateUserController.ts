@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 export default class CreateUserController
 {
-    constructor ( public useCase: CreateUserUseCase )
+    constructor ( private useCase: CreateUserUseCase )
     {
     }
     handle ( request: Request, response: Response )

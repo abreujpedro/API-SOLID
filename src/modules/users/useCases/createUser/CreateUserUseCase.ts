@@ -11,11 +11,10 @@ interface IRequestCreateUser
 
 export default class CreateUserUseCase
 {
-    public _repository;
-    constructor ( repository: IUserRepository ) { this._repository = repository; }
+    constructor ( private repository: IUserRepository ) { }
     execute ( { name, email, picture, password }: IRequestCreateUser )
     {
         console.log( "foi use case" );
-        this._repository.createUser( { name, email, picture, password } );
+        this.repository.createUser( { name, email, picture, password } );
     }
 }
