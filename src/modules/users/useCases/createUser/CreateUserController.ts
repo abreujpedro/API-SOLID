@@ -8,7 +8,11 @@ export default class CreateUserController {
   }
   async handle(request: Request, response: Response) {
     const { name, email, picture, password } = request.body;
-    await this._useCase.execute({ name, email, picture, password });
-    return response.status(201).end();
+    try {
+      await this._useCase.execute({ name, email, picture, password });
+      return response.status(201).end();
+    } catch (error) {
+      return response.status(500).json({ message: error });
+    }
   }
 }

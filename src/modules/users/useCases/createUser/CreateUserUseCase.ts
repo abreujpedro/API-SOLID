@@ -14,6 +14,13 @@ export default class CreateUserUseCase {
   }
 
   async execute({ name, email, picture, password }: IRequestCreateUser) {
+    if (!email) {
+      throw "Email incorrect";
+    }
+    const userAlreadyExists = await this.repository.getUSerByEmail(email);
+    if (userAlreadyExists) {
+      throw "User Already Exists";
+    }
     try {
       this.repository.createUser({ name, email, picture, password });
     } catch (error: any) {
