@@ -1,3 +1,4 @@
+import encrypt from "../../../../utils/encrypt";
 import IUserRepository from "../../repositories/IUserRepository";
 
 interface IRequestCreateUser {
@@ -22,7 +23,13 @@ export default class CreateUserUseCase {
       throw "User Already Exists";
     }
     try {
-      this.repository.createUser({ name, email, picture, password });
+      const passwordHash = await encrypt(password);
+      this.repository.createUser({
+        name,
+        email,
+        picture,
+        password: passwordHash,
+      });
     } catch (error: any) {
       throw new Error(error);
     }
