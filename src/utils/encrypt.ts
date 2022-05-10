@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 
 const encrypt = async (textToEncrypt: string | Buffer) => {
-  return await bcrypt.hash(textToEncrypt, 10);
+  const salt = 10;
+  return await bcrypt.hash(textToEncrypt, salt);
 };
 
 export default encrypt;
