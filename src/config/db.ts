@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 
-const dbName = "flights";
-const dbUser = "root";
-const dbHost = "localhost";
-const dbPassword = "123";
+const dbName = process.env.PGDATABASE || "flights";
+const dbUser = process.env.PGUSER || "root";
+const dbHost = process.env.PGHOST || "127.0.0.1";
+const dbPassword = process.env.PGPASSWORD || "123";
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   dialect: "mysql",

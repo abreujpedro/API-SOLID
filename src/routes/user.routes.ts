@@ -1,8 +1,10 @@
 import { Router } from "express";
-import createUserController from "../modules/users/useCases/createUser";
+import dependencyInjection from "../modules/users/useCases/createUser";
 
 const userRouter = Router();
-
-userRouter.post( "/user", createUserController.handle );
+const createUserControllerHere = dependencyInjection();
+userRouter.post("/user", (req, res) =>
+  createUserControllerHere.handle(req, res)
+);
 
 export default userRouter;
