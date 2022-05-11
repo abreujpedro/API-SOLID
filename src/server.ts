@@ -4,9 +4,12 @@ import router from "./routes/routes";
 import db from "./config/db";
 import createClientFactory from "./modules/clients/useCases/createClient";
 import getClientFactory from "./modules/clients/useCases/getClient";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./documentation/swagger.json";
 
 const app = express();
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // app.use(router);
 (async () => {
   try {

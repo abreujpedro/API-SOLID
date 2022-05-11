@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Costumers",
+    "contact": { "email": "jp.dellabianca@gmail.com" },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/client": {
+      "post": {
+        "summary": "Create new costumer",
+        "tags": ["Clients"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Client"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Client": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "cnpj": { "type": "string" },
+          "corporateName": { "type": "string" },
+          "phone": { "type": "string" }
+        }
+      }
+    }
+  }
+}
