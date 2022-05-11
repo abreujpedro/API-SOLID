@@ -5,7 +5,7 @@ export default class ClientRepository implements IClientRepository {
   async createClient({ name, cnpj, corporateName, phone }: ICreateClientDTO) {
     await Client.create({ name, cnpj, corporateName, phone });
   }
-  async getClientByCNPJ(cnpj: String) {
+  async getClientByCNPJ(cnpj: string) {
     const client = await Client.findOne({ where: { cnpj } });
     return client;
   }
@@ -13,7 +13,7 @@ export default class ClientRepository implements IClientRepository {
     const client = await Client.findAll();
     return client;
   }
-  async deleteClientByCNPJ(cnpj: String) {
+  async deleteClientByCNPJ(cnpj: string) {
     await Client.destroy({ where: { cnpj } });
   }
 }

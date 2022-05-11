@@ -7,7 +7,7 @@ export interface ICreateClientDTO {
 
 export default interface IClientRepository {
   createClient: (userDetails: ICreateClientDTO) => Promise<unknown>;
-  getClientByCNPJ: (cnpj: String) => Promise<unknown>;
+  getClientByCNPJ: (cnpj: string) => Promise<unknown>;
   getAllClient: () => Promise<unknown>;
-  deleteClientByCNPJ: (cnpj: String) => Promise<unknown>;
+  deleteClientByCNPJ: (cnpj: string) => Promise<unknown>;
 }

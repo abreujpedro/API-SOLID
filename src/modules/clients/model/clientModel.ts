@@ -11,19 +11,35 @@ const Client = db.define("client", {
   cnpj: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: { msg: "You need to pass a CNPJ" },
+      len: {
+        args: [14, 14],
+        msg: "CNPJ need to has 14 chars",
+      },
+    },
   },
   corporate_name: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      notEmpty: { msg: "You need to pass a Coporate Name" },
+    },
   },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: { msg: "You need to pass a Name" },
+    },
   },
   phone: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: { msg: "You need to pass a Phone number" },
+    },
   },
 });
 
