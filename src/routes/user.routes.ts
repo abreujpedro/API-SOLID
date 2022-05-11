@@ -1,5 +1,5 @@
 import { Router } from "express";
-import dependencyInjection from "../modules/users/useCases/createUser";
+import dependencyInjection from "../modules/clients/useCases/createClient";
 
 const userRouter = Router();
 const createUserControllerHere = dependencyInjection();
