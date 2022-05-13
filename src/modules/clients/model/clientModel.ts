@@ -11,6 +11,7 @@ const Client = db.define("client", {
   cnpj: {
     type: DataTypes.STRING(14),
     allowNull: false,
+    unique: true,
     validate: {
       notEmpty: { msg: "You need to pass a CNPJ" },
       len: {
@@ -22,7 +23,6 @@ const Client = db.define("client", {
   corporate_name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     validate: {
       notEmpty: { msg: "You need to pass a Coporate Name" },
     },

@@ -20,6 +20,8 @@ export default class ClientRepository implements IClientRepository {
   }: ICreateClientDTO) {
     const client = await Client.create({ name, cnpj, corporate_name, phone });
 
+    console.log(client.getDataValue("id"));
+
     await Address.create({
       name: address_name,
       cep,

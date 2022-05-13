@@ -18,7 +18,6 @@ const Address = db.define("address", {
   number: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     validate: {
       notEmpty: { msg: "You need to pass a number" },
     },

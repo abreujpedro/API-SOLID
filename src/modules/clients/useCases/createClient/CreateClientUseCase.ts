@@ -23,13 +23,13 @@ export default class CreateClientUserCase {
   }: {
     [key: string]: string;
   }) {
-    // if (!cnpj) {
-    //   throw "CNPJ incorrect";
-    // }
-    // const userAlreadyExists = await this.repository.getClientByCNPJ(cnpj);
-    // if (userAlreadyExists) {
-    //   throw "Client Already Exists";
-    // }
+    if (!cnpj) {
+      throw "CNPJ incorrect";
+    }
+    const userAlreadyExists = await this.repository.getClientByCNPJ(cnpj);
+    if (userAlreadyExists) {
+      throw "Client Already Exists";
+    }
     try {
       this.repository.createClient({
         name,
