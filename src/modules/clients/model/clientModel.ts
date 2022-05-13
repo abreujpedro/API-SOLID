@@ -9,13 +9,13 @@ const Client = db.define("client", {
     allowNull: false,
   },
   cnpj: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(14),
     allowNull: false,
     validate: {
       notEmpty: { msg: "You need to pass a CNPJ" },
       len: {
         args: [14, 14],
-        msg: "CNPJ need to has 14 chars",
+        msg: "CNPJ needs to has 14 numbers",
       },
     },
   },
