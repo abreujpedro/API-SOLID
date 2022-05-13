@@ -58,6 +58,7 @@ const Address = db.define("address", {
       },
     },
   },
+  client_id: { type: DataTypes.INTEGER },
   latitute: {
     type: DataTypes.STRING,
   },

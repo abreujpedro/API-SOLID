@@ -6,6 +6,7 @@ import createClientFactory from "./modules/clients/useCases/createClient";
 import getClientFactory from "./modules/clients/useCases/getClient";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./documentation/swagger.json";
+import handleDb from "./modules/relationClientAndAddress/clientAndAddress";
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     const port = process.env.PORT || 3000;
     await db.sync();
     app.get("/", (req, res) => res.send("oi"));
-
+    handleDb();
     const createClientControllerHere = createClientFactory();
     const getClientControllerHere = getClientFactory();
 

@@ -1,3 +1,4 @@
+import Client from "../../model/clientModel";
 import IClientRepository, {
   ICreateClientDTO,
 } from "../../repositories/IClientRepository";
@@ -8,20 +9,39 @@ export default class CreateClientUserCase {
     this.repository = repository;
   }
 
-  async execute({ name, cnpj, corporateName, phone }: ICreateClientDTO) {
-    if (!cnpj) {
-      throw "CNPJ incorrect";
-    }
-    const userAlreadyExists = await this.repository.getClientByCNPJ(cnpj);
-    if (userAlreadyExists) {
-      throw "Client Already Exists";
-    }
+  async execute({
+    name,
+    cnpj,
+    corporate_name,
+    phone,
+    address_name,
+    cep,
+    city,
+    district,
+    number,
+    state,
+  }: {
+    [key: string]: string;
+  }) {
+    // if (!cnpj) {
+    //   throw "CNPJ incorrect";
+    // }
+    // const userAlreadyExists = await this.repository.getClientByCNPJ(cnpj);
+    // if (userAlreadyExists) {
+    //   throw "Client Already Exists";
+    // }
     try {
       this.repository.createClient({
         name,
         cnpj,
-        corporateName,
+        corporate_name,
         phone,
+        address_name,
+        cep,
+        city,
+        district,
+        number,
+        state,
       });
     } catch (error: any) {
       throw new Error(error);

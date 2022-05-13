@@ -8,10 +8,17 @@ export default class GetClientUserCase {
 
   async execute(cnpj: string | undefined) {
     if (!cnpj) {
-      throw "CNPJ incorrect";
+      try {
+        console.log("use case withou cnpj get");
+        const clients = await this.repository.getAllClient();
+        return clients;
+      } catch (error: any) {
+        throw new Error(error);
+      }
     }
     try {
-      this.repository.getClientByCNPJ(cnpj);
+      const client = await this.repository.getClientByCNPJ(cnpj);
+      return client;
     } catch (error: any) {
       throw new Error(error);
     }

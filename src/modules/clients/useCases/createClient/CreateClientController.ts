@@ -1,6 +1,5 @@
 import CreateClientUseCase from "./CreateClientUseCase";
 import { Request, Response } from "express";
-import { ICreateClientDTO } from "../../repositories/IClientRepository";
 
 export default class CreateClientController {
   _useCase: CreateClientUseCase;
@@ -8,9 +7,37 @@ export default class CreateClientController {
     this._useCase = useCase;
   }
   async handle(request: Request, response: Response) {
-    const { name, cnpj, corporateName, phone }: ICreateClientDTO = request.body;
+    const {
+      name,
+      cnpj,
+      corporate_name,
+      phone,
+      address_name,
+      cep,
+      city,
+      district,
+      number,
+      state,
+      latitude,
+      longitude,
+      option,
+    } = request.body;
     try {
-      await this._useCase.execute({ name, cnpj, corporateName, phone });
+      await this._useCase.execute({
+        name,
+        cnpj,
+        corporate_name,
+        phone,
+        address_name,
+        cep,
+        city,
+        district,
+        number,
+        state,
+        latitude,
+        longitude,
+        option,
+      });
       return response.status(201).end();
     } catch (error) {
       return response.status(500).json({ message: error });

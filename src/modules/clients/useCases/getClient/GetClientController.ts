@@ -8,10 +8,10 @@ export default class GetClientController {
     this._useCase = useCase;
   }
   async handle(request: Request, response: Response) {
-    const { cnpj }: { cnpj: string | undefined } = request.body;
+    const cnpj = request.query.cnpj ? "" + request.query.cnpj : undefined;
     try {
-      await this._useCase.execute(cnpj);
-      return response.status(201).end();
+      const client = await this._useCase.execute(cnpj);
+      return response.status(200).json(client);
     } catch (error) {
       return response.status(500).json({ message: error });
     }
