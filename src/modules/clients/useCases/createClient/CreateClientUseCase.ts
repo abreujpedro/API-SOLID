@@ -1,15 +1,16 @@
-import Client from "../../model/clientModel";
-import IClientRepository, {
-  ICreateClientDTO,
-} from "../../repositories/IClientRepository";
+import CustomError from "../../../../util/error/CustomError";
+import IClientRepository from "../../repositories/IClientRepository";
+import checkUserExists from "../../services/checkUserExists";
 
-export default class CreateClientUserCase {
+export default class CreateClientUserCase
+{
   repository: IClientRepository;
-  constructor(repository: IClientRepository) {
+  constructor ( repository: IClientRepository )
+  {
     this.repository = repository;
   }
 
-  async execute({
+  async execute ( {
     name,
     cnpj,
     corporate_name,
@@ -21,17 +22,21 @@ export default class CreateClientUserCase {
     number,
     state,
   }: {
-    [key: string]: string;
-  }) {
-    if (!cnpj) {
-      throw "CNPJ incorrect";
+    [ key: string ]: string;
+  } )
+  {
+    if ( !cnpj )
+    {
+      throw new CustomError( "CNPJ incorrect", 400 );
     }
-    const userAlreadyExists = await this.repository.getClientByCNPJ(cnpj);
-    if (userAlreadyExists) {
-      throw "Client Already Exists";
+    const userAlreadyExists = await checkUserExists( this.repository, cnpj );
+    if ( userAlreadyExists )
+    {
+      throw new CustomError( "Client Already Exists", 400 );
     }
-    try {
-      this.repository.createClient({
+    try
+    {
+      this.repository.createClient( {
         name,
         cnpj,
         corporate_name,
@@ -42,9 +47,10 @@ export default class CreateClientUserCase {
         district,
         number,
         state,
-      });
-    } catch (error: any) {
-      throw new Error(error);
+      } );
+    } catch ( error )
+    {
+      throw error;
     }
   }
 }

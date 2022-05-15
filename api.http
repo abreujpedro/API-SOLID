@@ -1,11 +1,18 @@
-# POST USER
+# POST client
 
-POST http://localhost:3000/user
+POST http://localhost:3000/client
 Content-Type: application/json
 
 {
-    "email": "use5r@example.com",
-    "name": "user5",
-    "password": "password3",
-    "picture": "picture3"
+    "name": "string",
+    "cnpj": "52345678901234",
+    "corporate_name": "string",
+    "phone": "string",
+    "address_name": "string",
+    "cep": "12345678",
+    "city": "string",
+    "district": "string",
+    "number": "string",
+    "state": "string",
+    "option": "string"
 }

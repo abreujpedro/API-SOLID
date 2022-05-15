@@ -1,12 +1,15 @@
 import CreateClientUseCase from "./CreateClientUseCase";
 import { Request, Response } from "express";
 
-export default class CreateClientController {
+export default class CreateClientController
+{
   _useCase: CreateClientUseCase;
-  constructor(useCase: CreateClientUseCase) {
+  constructor ( useCase: CreateClientUseCase )
+  {
     this._useCase = useCase;
   }
-  async handle(request: Request, response: Response) {
+  async handle ( request: Request, response: Response )
+  {
     const {
       name,
       cnpj,
@@ -22,8 +25,8 @@ export default class CreateClientController {
       longitude,
       option,
     } = request.body;
-    try {
-      await this._useCase.execute({
+
+      await this._useCase.execute( {
         name,
         cnpj,
         corporate_name,
@@ -37,10 +40,7 @@ export default class CreateClientController {
         latitude,
         longitude,
         option,
-      });
-      return response.status(201).end();
-    } catch (error) {
-      return response.status(500).json({ message: error });
-    }
+      } );
+      return response.status( 201 ).end();
   }
 }
