@@ -21,12 +21,12 @@ const takeGeoPosition = async ( { address_name, city, number }: IAddressDTO ) =>
     try
     {
         const response = await axios.get( url, { params } );
-        console.log( response.data );
-        const { latitude, longitude } = response.data;
+        const { latitude, longitude } = response.data.data[0];
+
         return { latitude, longitude };
     } catch ( error )
     {
-        console.log(error)
+        console.log( error );
         return { latitude: null, longitude: null };
     }
 

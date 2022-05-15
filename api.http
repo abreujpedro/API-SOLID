@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "name": "string",
-    "cnpj": "38645378901834",
+    "cnpj": "66246725931154",
     "corporate_name": "string",
     "phone": "string",
     "address_name": "Ugolino dalloca",

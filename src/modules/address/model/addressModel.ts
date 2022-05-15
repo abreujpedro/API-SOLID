@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../../../config/db";
 
-const Address = db.define("address", {
+const Address = db.define( "address", {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -47,23 +47,23 @@ const Address = db.define("address", {
     },
   },
   cep: {
-    type: DataTypes.STRING(8),
+    type: DataTypes.STRING( 8 ),
     allowNull: false,
     validate: {
       notEmpty: { msg: "You need to pass a CEP" },
       len: {
-        args: [8, 8],
+        args: [ 8, 8 ],
         msg: "CNPJ needs to has 8 numbers",
       },
     },
   },
   client_id: { type: DataTypes.INTEGER },
-  latitute: {
+  latitude: {
     type: DataTypes.STRING,
   },
   longitude: {
     type: DataTypes.STRING,
   },
-});
+} );
 
 export default Address;

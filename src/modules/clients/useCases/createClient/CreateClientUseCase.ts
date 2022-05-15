@@ -39,6 +39,7 @@ export default class CreateClientUserCase
     try
     {
       const { latitude, longitude } = await takeGeoPosition( { address_name, city, number } );
+      console.log( latitude, longitude );
       this.repository.createClient( {
         name,
         cnpj,
