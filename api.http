@@ -5,14 +5,14 @@ Content-Type: application/json
 
 {
     "name": "string",
-    "cnpj": "52345678901234",
+    "cnpj": "38645378901834",
     "corporate_name": "string",
     "phone": "string",
-    "address_name": "string",
-    "cep": "12345678",
-    "city": "string",
-    "district": "string",
-    "number": "string",
-    "state": "string",
-    "option": "string"
+    "address_name": "Ugolino dalloca",
+    "cep": "16075125",
+    "city": "Araçatuba",
+    "district": "Primavera",
+    "number": "1357",
+    "state": "São Paulo",
+    "option": "Casa"
 }

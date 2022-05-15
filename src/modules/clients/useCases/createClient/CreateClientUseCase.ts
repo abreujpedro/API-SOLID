@@ -1,3 +1,4 @@
+import takeGeoPosition from "../../../../externalAPIs/geoAPI/geoAPI";
 import CustomError from "../../../../util/error/CustomError";
 import IClientRepository from "../../repositories/IClientRepository";
 import checkUserExists from "../../services/checkUserExists";
@@ -21,6 +22,7 @@ export default class CreateClientUserCase
     district,
     number,
     state,
+    option
   }: {
     [ key: string ]: string;
   } )
@@ -36,6 +38,7 @@ export default class CreateClientUserCase
     }
     try
     {
+      const { latitude, longitude } = await takeGeoPosition( { address_name, city, number } );
       this.repository.createClient( {
         name,
         cnpj,
@@ -47,6 +50,9 @@ export default class CreateClientUserCase
         district,
         number,
         state,
+        latitude,
+        longitude,
+        option
       } );
     } catch ( error )
     {

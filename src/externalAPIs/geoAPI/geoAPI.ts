@@ -6,21 +6,28 @@ interface IAddressDTO
     address_name: string;
     city: string;
     number: string;
-    state: string;
 }
 
-const takeGeoPosition = async ( { address_name, city, number, state }: IAddressDTO ) =>
+const takeGeoPosition = async ( { address_name, city, number }: IAddressDTO ) =>
 {
-    const addressToSearch = number + " " + address_name + ", " + city + " " + state;
-    const url = `http://api.positionstack.com/v1/forward?access_key=${process.env.GEO_ACCESS_KEY}&query=${addressToSearch}`;
+    const addressToSearch = address_name + " " + number;
+    const url = 'http://api.positionstack.com/v1/forward';
+    const params = {
+        access_key: process.env.GEO_ACCESS_KEY,
+        query: addressToSearch,
+        region: city,
+        limit: "1"
+    };
     try
     {
-        const response = await axios.get( url );
-        return response;
+        const response = await axios.get( url, { params } );
+        console.log( response.data );
+        const { latitude, longitude } = response.data;
+        return { latitude, longitude };
     } catch ( error )
     {
-        const errorToString = "" + error;
-        throw new CustomError( errorToString, 500 );
+        console.log(error)
+        return { latitude: null, longitude: null };
     }
 
 };
