@@ -1,18 +1,26 @@
 # POST client
 
-POST http://localhost:3000/client
-Content-Type: application/json
+# POST http://localhost:3000/client
+# Content-Type: application/json
 
-{
-    "name": "string",
-    "cnpj": "66246725931154",
-    "corporate_name": "string",
-    "phone": "string",
-    "address_name": "Ugolino dalloca",
-    "cep": "16075125",
-    "city": "Araçatuba",
-    "district": "Primavera",
-    "number": "1357",
-    "state": "São Paulo",
-    "option": "Casa"
-}
+# {
+#     "name": "string",
+#     "cnpj": "66246725931124",
+#     "corporate_name": "string",
+#     "phone": "string",
+#     "address_name": "Ugolino dalloca",
+#     "cep": "16075125",
+#     "city": "Araçatuba",
+#     "district": "Primavera",
+#     "number": "1357",
+#     "state": "São Paulo",
+#     "option": "Casa"
+# }
+
+# GET all client
+# GET http://localhost:3000/client
+
+# GET client by cnpj
+# GET http://localhost:3000/client?cnpj=66246725931124
+
+# DELETE http://localhost:3000/client?cnpj=66246725931124

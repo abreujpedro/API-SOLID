@@ -1,19 +1,17 @@
-import GetClientUseCase from "./GetClientUseCase";
+import DeletClientUserCase from "./DeleteClientUseCase";
 import { Request, Response } from "express";
 
-export default class GetClientController
+export default class DeleteClientController
 {
-  _useCase: GetClientUseCase;
-  constructor ( useCase: GetClientUseCase )
+  _useCase: DeletClientUserCase;
+  constructor ( useCase: DeletClientUserCase )
   {
     this._useCase = useCase;
   }
   async handle ( request: Request, response: Response )
   {
     const cnpj = request.query.cnpj ? "" + request.query.cnpj : undefined;
-
     const client = await this._useCase.execute( cnpj );
     return response.status( 200 ).json( client );
-
   }
 }

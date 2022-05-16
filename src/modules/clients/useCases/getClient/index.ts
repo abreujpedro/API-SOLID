@@ -2,10 +2,11 @@ import ClientRepository from "../../repositories/implementations/ClientRepositor
 import GetClientController from "./GetClientController";
 import GetClientUseCase from "./GetClientUseCase";
 
-const getClientFactory = () => {
+const getClientFactory = () =>
+{
   const clientRepo = new ClientRepository();
-  const getClientUseCase = new GetClientUseCase(clientRepo);
-  const getClientController = new GetClientController(getClientUseCase);
+  const getClientUseCase = new GetClientUseCase( clientRepo );
+  const getClientController = new GetClientController( getClientUseCase );
   return getClientController;
 };
 

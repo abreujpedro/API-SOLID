@@ -2,7 +2,7 @@ import CustomError from "../../../../util/error/CustomError";
 import IClientRepository from "../../repositories/IClientRepository";
 import checkUserExists from "../../services/checkUserExists";
 
-export default class GetClientUserCase
+export default class DeletClientUserCase
 {
   repository: IClientRepository;
   constructor ( repository: IClientRepository )
@@ -14,29 +14,26 @@ export default class GetClientUserCase
   {
     if ( !cnpj )
     {
+
+      throw new CustomError( "CNPJ incorrect", 400 );
+
+    }
+
+    const userAlreadyExists = await checkUserExists( this.repository, cnpj );
+    if ( userAlreadyExists )
+    {
       try
       {
-        const clients = await this.repository.getAllClient();
-        return clients;
+        this.repository.deleteClientByCNPJ( cnpj );
       } catch ( error: any )
       {
         throw new Error( error );
       }
-    }
-
-    const userAlreadyExists = await checkUserExists( this.repository, cnpj );
-    if ( !userAlreadyExists )
+    } else
     {
       throw new CustomError( `There is no client with CNPJ:${cnpj}`, 400 );
-    }
+    };
 
-    try
-    {
-      const client = await this.repository.getClientByCNPJ( cnpj );
-      return client;
-    } catch ( error )
-    {
-      throw error;
-    }
+
   }
 }
