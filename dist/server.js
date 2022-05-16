@@ -38,7 +38,6 @@ app.use((error, req, res, next) => {
     try {
         const port = process.env.PORT || 3000;
         yield db_1.default.sync();
-        app.get("/", (req, res) => res.send("oi"));
         (0, clientAndAddress_1.default)();
         app.listen(port, () => {
             console.log("server on port ", port);
