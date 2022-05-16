@@ -22,7 +22,6 @@ const CustomError_1 = __importDefault(require("./util/error/CustomError"));
 require("express-async-errors");
 const client_routes_1 = __importDefault(require("./routes/client.routes"));
 const app = (0, express_1.default)();
-// app.disable('x-powered-by');
 app.use(express_1.default.json());
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_json_1.default));
 app.use(client_routes_1.default);
