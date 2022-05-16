@@ -1,4 +1,5 @@
-export interface ICreateClientDTO {
+export interface ICreateClientDTO
+{
   cnpj: string;
   corporate_name: string;
   name: string;
@@ -14,9 +15,11 @@ export interface ICreateClientDTO {
   longitude?: string;
 }
 
-export default interface IClientRepository {
-  createClient: (userDetails: ICreateClientDTO) => Promise<unknown>;
-  getClientByCNPJ: (cnpj: string) => Promise<unknown>;
+export default interface IClientRepository
+{
+  createClient: ( userDetails: ICreateClientDTO ) => Promise<unknown>;
+  getClientByCNPJ: ( cnpj: string ) => Promise<unknown>;
   getAllClient: () => Promise<unknown>;
-  deleteClientByCNPJ: (cnpj: string) => Promise<unknown>;
+  deleteClientByCNPJ: ( cnpj: string ) => Promise<unknown>;
+  updateClientName: ( cnpj: string, name: string ) => Promise<unknown>;
 }
