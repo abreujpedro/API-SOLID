@@ -32,7 +32,6 @@ app.use(
   {
     const port = process.env.PORT || 3000;
     await db.sync();
-    app.get( "/", ( req, res ) => res.send( "oi" ) );
     handleDb();
     app.listen( port, () =>
     {
