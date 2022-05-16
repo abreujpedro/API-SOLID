@@ -62,7 +62,6 @@ export default class ClientRepository implements IClientRepository
 
   async updateClientName ( cnpj: string, name: string )
   {
-    console.log("entrei repository")
     await Client.update( { name }, { where: { cnpj } } );
   }
 }

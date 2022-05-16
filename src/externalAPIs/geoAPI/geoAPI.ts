@@ -26,7 +26,6 @@ const takeGeoPosition = async ( { address_name, city, number }: IAddressDTO ) =>
         return { latitude, longitude };
     } catch ( error )
     {
-        console.log( error );
         return { latitude: null, longitude: null };
     }
 

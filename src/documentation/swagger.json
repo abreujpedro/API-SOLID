@@ -27,8 +27,115 @@
                   "state": { "type": "string" },
                   "option": { "type": "string" }
                 }
+              },
+              "examples": {
+                "client": {
+                  "value": {
+                    "name": "João",
+                    "cnpj": "662467259311225",
+                    "corporate_name": "string",
+                    "phone": "string",
+                    "address_name": "Ugolino dalloca",
+                    "cep": "16075125",
+                    "city": "Araçatuba",
+                    "district": "Primavera",
+                    "number": "1357",
+                    "state": "São Paulo",
+                    "option": "Casa"
+                  }
+                }
               }
             }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created costumer"
+          },
+          "400": {
+            "description": "Client Already Exists | Element null | Invalid length"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Patch a costumer",
+        "description": "Update the name of a costumer",
+        "tags": ["Clients"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": { "type": "string" },
+                  "cnpj": { "type": "string" }
+                }
+              },
+              "examples": {
+                "client": {
+                  "value": {
+                    "name": "João Atualizado",
+                    "cnpj": "662467259311225"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get costumers",
+        "description": "Returns all costumers",
+        "tags": ["Clients"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cnpj",
+            "description": "cnpj to filter by",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Client"
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "sumary": "delete customer",
+        "description": "deletes a single customer based on the cnpj supplied",
+        "tags": ["Clients"],
+        "parameters": [
+          {
+            "name": "cnpj",
+            "in": "query",
+            "description": "cnpj of the customer to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "customer deleted"
+          },
+          "default": {
+            "description": "unexpected error"
           }
         }
       }
@@ -48,7 +155,7 @@
       "Address": {
         "type": "object",
         "properties": {
-          "address": { "type": "string" },
+          "name": { "type": "string" },
           "cep": { "type": "string" },
           "city": { "type": "string" },
           "district": { "type": "string" },

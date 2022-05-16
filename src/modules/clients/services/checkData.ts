@@ -4,10 +4,8 @@ const requiredDatas = ( data: unknown[] ) =>
 {
     data.forEach( element =>
     {
-        console.log( element );
         if ( !element )
         {
-            console.log( "entrei onde nn deveria" );
             throw new CustomError( `Invalid null elements`, 400 );
         }
     } );

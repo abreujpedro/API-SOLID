@@ -10,10 +10,9 @@ export default class UpdateNameClientController
   }
   async handle ( request: Request, response: Response )
   {
-    console.log( "entrei controller -------------------------" );
     const { cnpj, name } = request.body;
 
-    const client = await this._useCase.execute( cnpj, name );
-    return response.status( 200 ).json( client );
+    await this._useCase.execute( cnpj, name );
+    return response.status( 204 ).end();
   }
 }

@@ -17,7 +17,6 @@ app.use( clientRoutes );
 app.use(
   ( error: Error | any, req: Request, res: Response, next: NextFunction ) =>
   {
-    console.log( "entrei ---------------------------xd" );
     if ( error instanceof CustomError )
     {
       return res.status( error.code ).json( { error: error.message } );

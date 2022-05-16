@@ -7,7 +7,6 @@ const updateNameClientFactory = () =>
   const clientRepo = new ClientRepository();
   const updateNameClientUseCase = new UpdateNameClientUseCase( clientRepo );
   const updateNameClientController = new UpdateNameClientController( updateNameClientUseCase );
-  console.log( "entrei index factory" );
   return updateNameClientController;
 };
 

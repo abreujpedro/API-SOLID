@@ -15,17 +15,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("dotenv/config");
 const db_1 = __importDefault(require("./config/db"));
-const createUser_1 = __importDefault(require("./modules/users/useCases/createUser"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_json_1 = __importDefault(require("./documentation/swagger.json"));
+const clientAndAddress_1 = __importDefault(require("./modules/relationClientAndAddress/clientAndAddress"));
+const CustomError_1 = __importDefault(require("./util/error/CustomError"));
+require("express-async-errors");
+const client_routes_1 = __importDefault(require("./routes/client.routes"));
 const app = (0, express_1.default)();
+// app.disable('x-powered-by');
 app.use(express_1.default.json());
-// app.use(router);
+app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_json_1.default));
+app.use(client_routes_1.default);
+app.use((error, req, res, next) => {
+    if (error instanceof CustomError_1.default) {
+        return res.status(error.code).json({ error: error.message });
+    }
+    return res
+        .status(500)
+        .json({ status: 500, message: "internal server error" });
+});
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const port = process.env.PORT || 3000;
         yield db_1.default.sync();
         app.get("/", (req, res) => res.send("oi"));
-        const createUserControllerHere = (0, createUser_1.default)();
-        app.post("/user", (req, res) => createUserControllerHere.handle(req, res));
+        (0, clientAndAddress_1.default)();
         app.listen(port, () => {
             console.log("server on port ", port);
         });
