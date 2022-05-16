@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../../../config/db";
 
-const Client = db.define("client", {
+const Client = db.define( "client", {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -9,13 +9,13 @@ const Client = db.define("client", {
     allowNull: false,
   },
   cnpj: {
-    type: DataTypes.STRING(14),
+    type: DataTypes.STRING( 14 ),
     allowNull: false,
     unique: true,
     validate: {
       notEmpty: { msg: "You need to pass a CNPJ" },
       len: {
-        args: [14, 14],
+        args: [ 14, 14 ],
         msg: "CNPJ needs to has 14 numbers",
       },
     },
@@ -41,6 +41,6 @@ const Client = db.define("client", {
       notEmpty: { msg: "You need to pass a Phone number" },
     },
   },
-});
+} );
 
 export default Client;

@@ -52,6 +52,11 @@ export default class ClientRepository implements IClientRepository
   }
   async deleteClientByCNPJ ( cnpj: string )
   {
-    await Client.destroy( { where: { cnpj } } );
+    const client = await Client.findOne( {
+      where: {
+        cnpj
+      },
+    } );
+    await client?.destroy();
   }
 }

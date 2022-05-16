@@ -57,7 +57,9 @@ const Address = db.define( "address", {
       },
     },
   },
-  client_id: { type: DataTypes.INTEGER },
+  client_id: {
+    type: DataTypes.INTEGER
+  },
   latitude: {
     type: DataTypes.STRING,
   },
