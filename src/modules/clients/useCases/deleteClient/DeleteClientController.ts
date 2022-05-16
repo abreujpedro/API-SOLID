@@ -10,7 +10,7 @@ export default class DeleteClientController
   }
   async handle ( request: Request, response: Response )
   {
-    const cnpj = request.query.cnpj ? "" + request.query.cnpj : undefined;
+    const cnpj = request.query.cnpj ? "" + request.query.cnpj : '';
     const client = await this._useCase.execute( cnpj );
     return response.status( 200 ).json( client );
   }

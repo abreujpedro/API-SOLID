@@ -1,6 +1,7 @@
 import takeGeoPosition from "../../../../externalAPIs/geoAPI/geoAPI";
 import CustomError from "../../../../util/error/CustomError";
 import IClientRepository from "../../repositories/IClientRepository";
+import { requiredDatas, requiredLength } from "../../services/checkData";
 import checkUserExists from "../../services/checkUserExists";
 
 export default class CreateClientUserCase
@@ -27,10 +28,20 @@ export default class CreateClientUserCase
     [ key: string ]: string;
   } )
   {
-    if ( !cnpj )
-    {
-      throw new CustomError( "CNPJ incorrect", 400 );
-    }
+    requiredDatas( [ name,
+      cnpj,
+      corporate_name,
+      phone,
+      address_name,
+      cep,
+      city,
+      district,
+      number,
+      state, ] );
+
+    requiredLength( cnpj, 14 );
+    requiredLength( cep, 8 );
+
     const userAlreadyExists = await checkUserExists( this.repository, cnpj );
     if ( userAlreadyExists )
     {

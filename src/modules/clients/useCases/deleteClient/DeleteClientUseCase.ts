@@ -1,5 +1,6 @@
 import CustomError from "../../../../util/error/CustomError";
 import IClientRepository from "../../repositories/IClientRepository";
+import { requiredDatas, requiredLength } from "../../services/checkData";
 import checkUserExists from "../../services/checkUserExists";
 
 export default class DeletClientUserCase
@@ -10,14 +11,13 @@ export default class DeletClientUserCase
     this.repository = repository;
   }
 
-  async execute ( cnpj: string | undefined )
+  async execute ( cnpj: string )
   {
-    if ( !cnpj )
-    {
+    requiredDatas( [
+      cnpj,
+    ] );
 
-      throw new CustomError( "CNPJ incorrect", 400 );
-
-    }
+    requiredLength( cnpj, 14 );
 
     const userAlreadyExists = await checkUserExists( this.repository, cnpj );
     if ( userAlreadyExists )

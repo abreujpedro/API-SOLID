@@ -1,21 +1,21 @@
 # POST client
 
-# POST http://localhost:3000/client
-# Content-Type: application/json
+POST http://localhost:3000/client
+Content-Type: application/json
 
-# {
-#     "name": "string",
-#     "cnpj": "66246725931124",
-#     "corporate_name": "string",
-#     "phone": "string",
-#     "address_name": "Ugolino dalloca",
-#     "cep": "16075125",
-#     "city": "Araçatuba",
-#     "district": "Primavera",
-#     "number": "1357",
-#     "state": "São Paulo",
-#     "option": "Casa"
-# }
+{   
+    "name": "João",
+    "cnpj": "662467259311225",
+    "corporate_name": "string",
+    "phone": "string",
+    "address_name": "Ugolino dalloca",
+    "cep": "16075125",
+    "city": "Araçatuba",
+    "district": "Primavera",
+    "number": "1357",
+    "state": "São Paulo",
+    "option": "Casa"
+}
 
 # GET all client
 # GET http://localhost:3000/client
