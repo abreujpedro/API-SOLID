@@ -16,8 +16,8 @@ class DeleteClientController {
     handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const cnpj = request.query.cnpj ? "" + request.query.cnpj : '';
-            const client = yield this._useCase.execute(cnpj);
-            return response.status(200).json(client);
+            yield this._useCase.execute(cnpj);
+            return response.status(204).end();
         });
     }
 }

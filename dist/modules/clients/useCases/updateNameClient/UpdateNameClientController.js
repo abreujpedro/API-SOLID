@@ -16,8 +16,8 @@ class UpdateNameClientController {
     handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const { cnpj, name } = request.body;
-            const client = yield this._useCase.execute(cnpj, name);
-            return response.status(200).json(client);
+            yield this._useCase.execute(cnpj, name);
+            return response.status(204).end();
         });
     }
 }
